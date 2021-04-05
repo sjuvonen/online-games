@@ -1,0 +1,15 @@
+<div class="flex">
+  <div class="flex-grow border-4">
+    <ng-content *ngIf="isOwner()"></ng-content>
+
+    <room-players-list
+      [min]="minPlayers"
+      [max]="maxPlayers"
+      [players]="(players$ | async) || []"
+    ></room-players-list>
+  </div>
+
+  <aside class="w-72 ml-5 border-4">
+    <p>chatbox</p>
+  </aside>
+</div>

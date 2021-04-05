@@ -1,0 +1,43 @@
+<app-game-launcher
+  #launcher
+  game="six-nimmt"
+  [minPlayers]="settings.minPlayers"
+  [maxPlayers]="settings.maxPlayers"
+>
+  <form class="flex p-4 content-end items-end justify-between">
+    <fieldset>
+      <legend>Game settings</legend>
+
+      <div class="flex">
+        <fieldset>
+          <legend>Number of players</legend>
+
+          <div>
+            <label class="sr-only">Minimum</label>
+            <input type="number" min="2" [max]="settings.maxPlayers" value="2" name="minPlayers" [(ngModel)]="settings.minPlayers"/>
+
+            <span>to</span>
+
+            <label class="sr-only">Maximum</label>
+            <input type="number" [min]="settings.minPlayers" max="99" value="8" name="maxPlayers" [(ngModel)]="settings.maxPlayers"/>
+
+            <span>players</span>
+          </div>
+        </fieldset>
+
+        <fieldset class="ml-4">
+          <legend>Game speed</legend>
+
+          <label class="sr-only">Time for player</label>
+          <input type="number" min="20" max="300" value="90"/>
+          <span>seconds</span>
+        </fieldset>
+      </div>
+    </fieldset>
+
+    <div>
+      <button *ngIf="launcher.isNew()" (click)="launcher.create(this.settings)" type="button" class="border-4 p-4 ml-4">CREATE</button>
+      <button *ngIf="!launcher.isNew()" (click)="launcher.launch()" type="button" class="border-4 p-4 ml-4">START</button>
+    </div>
+  </form>
+</app-game-launcher>

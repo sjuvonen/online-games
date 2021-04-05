@@ -1,0 +1,20 @@
+<nav class="border-b-4 p-4 mb-5 flex">
+  <div class="flex-grow">
+    <a routerLink="">Home</a>
+    <a routerLink="games/six-nimmt" class="ml-4">6 Nimmt!</a>
+    <a routerLink="games/solo" class="ml-4">Solo</a>
+    <a routerLink="games/yahtzee" class="ml-4">Yahtzee</a>
+  </div>
+
+  <div>
+    <ng-container *ngIf="username$ | async as username; else loginLink">
+      {{ username }}
+    </ng-container>
+
+    <ng-template #loginLink>
+      <a routerLink="login">Login</a>
+    </ng-template>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

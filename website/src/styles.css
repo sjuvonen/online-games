@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("./forms.css");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-flow: column;;
+}
+
+button {
+  @apply border-2 px-5 py-3;
+}

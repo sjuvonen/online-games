@@ -1,0 +1,30 @@
+<div>
+  <p>Welcome to our games portal!</p>
+
+  <div *ngFor="let item of (groups | keyvalue)" class="flex flex-col px-4">
+    <div *ngFor="let room of item.value" class="flex mb-4 border-4">
+      <div class="flex-none w-32 p-2 m-2 bg-blue-100">
+        <h2 class="mb-2">{{ room.name }}</h2>
+        <p>{{ room.players.length }} players</p>
+      </div>
+      <div class="flex-grow">
+        <header class="mt-2 mr-2 px-2 bg-gray-200">
+          <p>
+            Room is open.
+            Professional players only.
+            (Fast pace)
+            ⭗
+            Created {{ createdAgo(room.createdAt) }} ago.
+          </p>
+        </header>
+
+        <home-players-list [players]="room.players" [min]="room.settings.minPlayers" [max]="room.settings.maxPlayers"></home-players-list>
+      </div>
+      <div class="flex flex-none flex-col justify-around">
+        <a [routerLink]="['/games', room.game, room.id]" class="flex-grow flex flex-col justify-around my-2 mr-2 px-3 bg-gray-200">
+          <span>JOIN</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+services:
+    postgres:
+        container_name: 'online-games-postgres'
+        image: postgres:13
+        environment:
+            - POSTGRES_DB=games
+            - POSTGRES_USER=games
+            - POSTGRES_PASSWORD=gamespw1234
+            - PGDATA=/var/lib/postgresql/data/pg_13
+        volumes:
+            - ./.cache/database:/var/lib/postgresql/data
+
+    backend:
+        container_name: 'online-games-backend'
+        build: ./backend
+        depends_on:
+            - postgres
+        volumes:
+            - ./backend:/app/backend
+            - ./colibre:/app/colibre
+            - ./.cache/backend/node_nodules:/app/backend/node_modules
+        ports:
+            - 8000:8000
+            - 8001:8001
+
+    website:
+        container_name: 'online-games-website'
+        build: ./website
+        depends_on:
+            - backend
+        volumes:
+            - ./website:/app/website
+            - ./.cache/website/node_modules:/app/website/node_modules
+        ports:
+            - 4200:4200

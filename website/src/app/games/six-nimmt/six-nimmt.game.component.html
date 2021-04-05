@@ -1,0 +1,21 @@
+<div class="flex flex-col">
+  <div class="border-b-4 flex justify-between pb-6 m-4 gap-4">
+    <div *ngFor="let card of hand$ | async" class="nimmt-slot border-4">
+      <ng-container *ngTemplateOutlet="cardSlot; context: { $implicit: card }"></ng-container>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 m-4">
+    <div *ngFor="let stack of board$ | async" class="border-4 border-black flex justify-between">
+      <div *ngFor="let card of stack" class="nimmt-slot border-4">
+        <ng-container *ngIf="card; then cardSlot else emptySlot"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #cardSlot let-card>
+  <p class="text-2xl">{{ card.number }}</p>
+  <small>{{ card.bulls }} x 🐂</small>
+</ng-template>
+<ng-template #emptySlot>empty</ng-template>

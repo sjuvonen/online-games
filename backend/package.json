@@ -1,0 +1,27 @@
+{
+  "name": "@online-games/backend",
+  "description": "Online Games backend.",
+  "version": "1.0.0",
+  "license": "ISC",
+  "author": "Samu Juvonen <samu.juvonen@gmail.com>",
+  "type": "module",
+  "main": "lib/server.js",
+  "scripts": {
+    "start": "./node_modules/nodemon/bin/nodemon.js --experimental-json-modules ./lib/server.js --watch lib ../colibre"
+  },
+  "dependencies": {
+    "@colibre/cms": "file:../colibre/cms",
+    "@colibre/server": "file:../colibre/server",
+    "@colibre/wss": "file:../colibre/wss",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.19.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "nodemon": "^2.0.7"
+  }
+}
